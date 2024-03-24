@@ -14,3 +14,7 @@ class ProductPageLocators(): #создание класса ProductPageLocators 
     BOOK_NAME = (By.CSS_SELECTOR, ".alert:first-child strong")  # переменная для селектора названия товара в корзине
     BOOK_PRICE = (By.CSS_SELECTOR, ".alert:last-child strong")  # переменная для селектора цены товара в корзине
     SUCCESS_MESSAGE = (By.CSS_SELECTOR, ".alert:first-child")  # переменная для селектора сообщения об успешном добавлении в корзину
+
+class BasePageLocators(): #создание класса BasePageLocators
+    LOGIN_LINK = (By.CSS_SELECTOR, "#login_link") #переменная для селектора ссылки на логин
+    

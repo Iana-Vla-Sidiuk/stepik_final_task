@@ -3,6 +3,7 @@ from selenium.common.exceptions import NoAlertPresentException
 from selenium.common.exceptions import TimeoutException
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
+from .locators import BasePageLocators
 import math
 
 class BasePage(): #создание класса BasePage
@@ -48,6 +49,13 @@ class BasePage(): #создание класса BasePage
             alert.accept()
         except NoAlertPresentException:
             print("No second alert presented")
+
+    def go_to_login_page(self): #метод перехода на страницу логина
+        link = self.browser.find_element(*BasePageLocators.LOGIN_LINK)
+        link.click()
+
+    def should_be_login_link(self): #метод проверки наличия ссылки на логин
+        assert self.is_element_present(*BasePageLocators.LOGIN_LINK), "Login link is not presented"
 
 
 
