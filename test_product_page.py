@@ -1,6 +1,8 @@
 import pytest
 from .pages.product_page import ProductPage
 from .pages.login_page import LoginPage
+from .pages.basket_page import BasketPage
+from .pages.base_page import BasePage
 
 #параметризация для запуска теста разных товаров акции, падающий тест отмечен как xfail
 @pytest.mark.parametrize('promo_offer', ["0","1", "2", "3", "4", "5", "6", pytest.param("7", marks=pytest.mark.xfail), "8", "9"])
@@ -33,7 +35,7 @@ def test_guest_cant_see_success_message(browser):
     page = ProductPage(browser, link, 0)
     page.open()                           # открываем страницу
     page.should_not_be_success_message()  # проверяем отсутсвие сообщения об успехе
-    
+
 @pytest.mark.xfail
 #тест, который проверяет, что сообщение об успехе исчезает после добавления товара в корзину
 def test_message_disappeared_after_adding_product_to_basket(browser):
@@ -42,17 +44,26 @@ def test_message_disappeared_after_adding_product_to_basket(browser):
     page.open()                           # открываем страницу
     page.add_product_to_cart()            # проверяем наличие кнопки добавления в корзину и добавляем товар в корзину
     page.should_not_be_success_message_after_adding_product_to_basket() # проверяем отсутсвие сообщения об успехе
-   
+
 def test_guest_should_see_login_link_on_product_page(browser): # тест наличия ссылки на логин
     link = "http://selenium1py.pythonanywhere.com/en-gb/catalogue/the-city-and-the-stars_95/"
     page = ProductPage(browser, link)
     page.open()                           # открываем страницу
     page.should_be_login_link()           # проверяем наличие ссылки на логин
- 
+
 def test_guest_can_go_to_login_page_from_product_page(browser): #тест перехода на страницу логина и проверка страницы логина
     link = "http://selenium1py.pythonanywhere.com/en-gb/catalogue/the-city-and-the-stars_95/"
     page = ProductPage(browser, link)
     page.open()                           # открываем страницу
-    page.go_to_login_page()               # вызываем метод перехода на страницу логина
-    login_page = LoginPage(browser, browser.current_url) 
+    page.go_to_login_page()               # переходим на страницу логина
+    login_page = LoginPage(browser, browser.current_url)
     login_page.should_be_login_page()     # вызываем метод проверки страницы логина
+
+def test_guest_cant_see_product_in_basket_opened_from_product_page(browser):
+    link = "http://selenium1py.pythonanywhere.com/catalogue/coders-at-work_207/"
+    page = ProductPage(browser, link)
+    page.open()                                   # открываем страницу товара
+    page.go_to_basket_page()                      # проверяем наличие ссылки на корзину и перехода на страницу корзины
+    basket_page = BasketPage(browser, browser.current_url, 0)
+    basket_page.should_be_empty_basket()          # проверяем отсутствие товаров в корзине
+    basket_page.should_be_empty_basket_message()  # проверяем наличие сообщения о пустой корзине
