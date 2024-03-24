@@ -24,3 +24,9 @@ class ProductPage(BasePage): #создание класса ProductPage (стр�
     def should_be_right_price(self, price):  #метод проверки совпадения цены товара в корзине
         book_price = self.browser.find_element(*ProductPageLocators.BOOK_PRICE)
         assert book_price.text == price, "Incorrect book price"
+
+    def should_not_be_success_message(self):  #метод проверки отсутствия элемента на странице товара
+        assert self.is_not_element_present(*ProductPageLocators.SUCCESS_MESSAGE), "Success message is presented, but should not be"
+
+    def should_not_be_success_message_after_adding_product_to_basket(self): #метод проверки того, что элемент исчезает
+        assert self.is_disappeared(*ProductPageLocators.SUCCESS_MESSAGE), "Success message is not disappeared, but should be"
