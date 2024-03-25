@@ -8,8 +8,7 @@ class LoginPageLocators():  # создание класса LoginPageLocators (�
     LOGIN_FORM = (By.CSS_SELECTOR, "#login_form")  # константа для селектора формы логина
     EMAIL_INPUT = (By.CSS_SELECTOR, "#id_registration-email")  # константа для селектора поля ввода почты
     PASSWORD_INPUT = (By.CSS_SELECTOR, "#id_registration-password1")  # константа для селектора поля ввода пароля
-    REPEAT_PASSWORD_INPUT = (
-    By.CSS_SELECTOR, "#id_registration-password2")  # константа для селектора поля повторного ввода пароля
+    REPEAT_PASSWORD_INPUT = (By.CSS_SELECTOR, "#id_registration-password2")  # константа для селектора поля повторного ввода пароля
     REGISTER_FORM_BUTTON = (By.CSS_SELECTOR, "#register_form button")  # константа для селектора кнопки регистрации
 
 class ProductPageLocators():  # создание класса ProductPageLocators (локаторы страницы товара)
@@ -18,8 +17,7 @@ class ProductPageLocators():  # создание класса ProductPageLocator
     PRICE = (By.CSS_SELECTOR, ".col-sm-6 .price_color")  # константа для селектора цены товара
     BOOK_NAME = (By.CSS_SELECTOR, ".alert:first-child strong")  # константа для селектора названия товара в корзине
     BOOK_PRICE = (By.CSS_SELECTOR, ".alert:last-child strong")  # константа для селектора цены товара в корзине
-    SUCCESS_MESSAGE = (
-    By.CSS_SELECTOR, ".alert:first-child")  # константа для селектора сообщения об успешном добавлении в корзину
+    SUCCESS_MESSAGE = (By.CSS_SELECTOR, ".alert:first-child")  # константа для селектора сообщения об успешном добавлении в корзину
 
 class BasePageLocators():  # создание класса BasePageLocators
     LOGIN_LINK = (By.CSS_SELECTOR, "#login_link")  # константа для селектора ссылки на логин

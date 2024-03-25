@@ -6,7 +6,6 @@ from selenium.webdriver.support import expected_conditions as EC
 from .locators import BasePageLocators
 import math
 
-
 class BasePage():  # создание класса BasePage
     def __init__(self, browser, url, timeout=10):  # конструктор BasePage
         self.browser = browser
@@ -38,8 +37,7 @@ class BasePage():  # создание класса BasePage
             return False
         return True
 
-    def solve_quiz_and_get_code(
-            self):  # метод расчета результата математического выражения для получения проверочного кода
+    def solve_quiz_and_get_code(self):  # метод расчета результата математического выражения для получения проверочного кода
         alert = self.browser.switch_to.alert
         x = alert.text.split(" ")[2]
         answer = str(math.log(abs((12 * math.sin(float(x))))))
